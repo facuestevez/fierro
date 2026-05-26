@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FIERRO — Estudio Audiovisual | Buenos Aires</title>
+<meta name="description" content="FIERRO es un estudio audiovisual de Buenos Aires. Producimos videoclips, spots y contenido para artistas. Identidad, dirección y producción.">
+<meta name="keywords" content="FIERRO, estudio audiovisual, productora audiovisual, videoclips, Buenos Aires, Argentina, dirección, producción, spots, contenido musical, Jero Jones, FERVOR, ENERC, productora emergente, Lulo Innocenti, Bruno Levy, Facundo López Estévez">
+<meta name="author" content="FIERRO">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="language" content="Spanish">
+<meta name="geo.region" content="AR-C">
+<meta name="geo.placename" content="Buenos Aires">
+<link rel="canonical" href="https://fierroav.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FIERRO">
+<meta property="og:title" content="FIERRO — Estudio Audiovisual">
+<meta property="og:description" content="Estudio audiovisual de Buenos Aires. Videoclips, spots y contenido para artistas.">
+<meta property="og:url" content="https://fierroav.com/">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://fierroav.com/og-image.jpg">
+<meta property="og:image:secure_url" content="https://fierroav.com/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FIERRO — Estudio Audiovisual">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FIERRO — Estudio Audiovisual">
+<meta name="twitter:description" content="Estudio audiovisual de Buenos Aires. Videoclips, spots y contenido para artistas.">
+<meta name="twitter:image" content="https://fierroav.com/og-image.jpg">
+<meta name="twitter:image:alt" content="FIERRO — Estudio Audiovisual">
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="shortcut icon" type="image/png" href="favicon-32.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "FIERRO",
+  "alternateName": "FIERRO Audiovisual",
+  "url": "https://fierroav.com",
+  "logo": "https://fierroav.com/og-image.jpg",
+  "image": "https://fierroav.com/og-image.jpg",
+  "description": "Estudio audiovisual de Buenos Aires. Producimos videoclips, spots y contenido para artistas.",
+  "email": "contactofierroav@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Buenos Aires",
+    "addressCountry": "AR"
+  },
+  "sameAs": [
+    "https://instagram.com/fierro.av",
+    "https://youtube.com/@fierroaudiovisual"
+  ],
+  "founder": [
+    { "@type": "Person", "name": "Lulo Innocenti", "jobTitle": "Director Creativo" },
+    { "@type": "Person", "name": "Bruno Levy Ulanovsky", "jobTitle": "Productor Ejecutivo" },
+    { "@type": "Person", "name": "Facundo López Estévez", "jobTitle": "Productor Ejecutivo" }
+  ]
+}
+</script>
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  :root {
+    --side-margin: 48px;
+    --top-margin: 28px;
+  }
+
+  /* ==== FLASH DE TRANSICIÓN ==== */
+  .flash {
+    position: fixed;
+    inset: 0;
+    background: #fff;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease-out;
+  }
+  .flash.active {
+    opacity: 0.85;
+    transition: opacity 0.06s ease-in;
+  }
+
+  /* ==== HEADER ==== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--top-margin) var(--side-margin);
+    pointer-events: none;
+  }
+  header > * { pointer-events: auto; }
+  .logo { width: 105px; height: auto; cursor: pointer; display: block; }
+  nav { display: flex; gap: 36px; align-items: center; }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 0.6; }
+  nav a.active { border-bottom: 1px solid #fff; }
+  .lang { display: flex; gap: 12px; margin-left: 14px; font-family: "SF Mono", monospace; font-size: 10px; letter-spacing: 0.2em; }
+  .lang span { cursor: pointer; opacity: 0.45; transition: opacity 0.2s; }
+  .lang span.active { opacity: 1; border-bottom: 1px solid #fff; padding-bottom: 2px; }
+
+  section { display: none; }
+  section.active { display: block; }
+
+  /* ==== HOME ==== */
+  .home-reel {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+  .home-reel video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .home-icons {
+    position: absolute;
+    bottom: var(--top-margin);
+    right: var(--side-margin);
+    display: flex;
+    gap: 24px;
+    z-index: 2;
+  }
+  .home-icons a {
+    color: #fff;
+    opacity: 0.85;
+    transition: opacity 0.2s, transform 0.2s;
+    display: block;
+  }
+  .home-icons a:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  .home-icons svg {
+    width: 22px;
+    height: 22px;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.6));
+  }
+
+  /* ==== TRABAJOS / GRILLA 2x2 (entra en una pantalla) ==== */
+  .work-page {
+    height: 100vh;
+    width: 100vw;
+    padding: calc(var(--top-margin) + 70px) var(--side-margin) calc(var(--top-margin) + 50px);
+    display: flex;
+    flex-direction: column;
+  }
+  .section-label {
+    font-family: "SF Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    opacity: 0.5;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 14px;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+  }
+  .proj-card {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+    min-height: 0;
+  }
+  .proj-card video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, filter 0.3s ease;
+    filter: brightness(0.85);
+  }
+  .proj-card:hover video {
+    transform: scale(1.04);
+    filter: brightness(1);
+  }
+  .proj-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 45%);
+    pointer-events: none;
+  }
+  .proj-label {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    right: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: clamp(15px, 1.5vw, 22px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    pointer-events: none;
+  }
+  .proj-label .artist {
+    font-family: "SF Mono", monospace;
+    font-size: clamp(9px, 0.8vw, 12px);
+    letter-spacing: 0.18em;
+    opacity: 0.6;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  /* ==== PÁGINA DE PROYECTO (sin scroll, full screen) ==== */
+  .project-page {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-video-wrap {
+    position: absolute;
+    inset: 0;
+    background: #000;
+  }
+  .project-video-wrap video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Gradiente full-width que cubre toda la parte inferior */
+  .project-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%);
+    z-index: 2;
+    pointer-events: none;
+  }
+  .project-overlay {
+    position: absolute;
+    bottom: 80px;
+    left: var(--side-margin);
+    right: var(--side-margin);
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .project-title {
+    font-size: clamp(40px, 5.5vw, 80px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    margin-bottom: 10px;
+  }
+  .project-artist {
+    font-family: "SF Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    opacity: 0.75;
+  }
+  .project-credits {
+    font-family: "SF Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-align: right;
+    line-height: 2;
+    min-width: 280px;
+  }
+  .project-credits .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+  .project-credits .row:last-child { border-bottom: none; }
+  .project-credits .label { opacity: 0.55; }
+
+  .project-bottom-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 90;
+    display: none;
+    justify-content: center;
+    padding: 18px var(--side-margin);
+    font-family: "SF Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+  }
+  .project-bottom-bar.visible { display: flex; }
+  .project-bottom-bar span {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    color: #fff;
+  }
+  .project-bottom-bar span:hover { opacity: 1; }
+
+  /* ==== CONTACTO ==== */
+  .contact-page {
+    padding: 140px var(--side-margin) 80px;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-page.active { display: flex; }
+  .contact-mail {
+    font-size: clamp(36px, 6vw, 90px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 48px;
+    word-break: break-all;
+  }
+  .contact-mail a { color: #fff; text-decoration: none; transition: opacity 0.2s; }
+  .contact-mail a:hover { opacity: 0.7; }
+  .contact-mail .at { opacity: 0.5; }
+  .contact-links {
+    display: flex;
+    gap: 36px;
+    font-family: "SF Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    flex-wrap: wrap;
+  }
+  .contact-links a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  .contact-links a:hover { opacity: 0.7; }
+  .contact-location {
+    margin-top: 56px;
+    font-family: "SF Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    opacity: 0.45;
+  }
+
+  /* ==== FOOTER ==== */
+  footer {
+    position: fixed;
+    bottom: 0; left: 0;
+    z-index: 50;
+    padding: var(--top-margin) var(--side-margin);
+    font-family: "SF Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  footer.hidden { display: none; }
+
+  /* ==== MOBILE ==== */
+  @media (max-width: 800px) {
+    :root {
+      --side-margin: 20px;
+      --top-margin: 18px;
+    }
+    .logo { width: 75px; }
+    nav { gap: 18px; }
+    .lang { margin-left: 6px; }
+    .work-page { padding-top: 80px; padding-bottom: 50px; }
+    .work-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); gap: 10px; }
+    .home-icons svg { width: 20px; height: 20px; }
+    .home-icons { gap: 20px; }
+    .project-overlay {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      bottom: 60px;
+    }
+    .project-credits { text-align: left; min-width: 0; width: 100%; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="flash" id="flash"></div>
+
+<header>
+  <a href="#" id="logoLink" aria-label="FIERRO — Inicio">
+    <svg class="logo" viewBox="0 0 682 218" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FIERRO">
+      <path d="M96.4482 29.8751H29.6724V62.233H89.3309V92.0977H29.6724V217.795H0V0H96.4482V29.8649V29.8751Z" fill="white"/>
+      <path d="M138.494 0.0101852V217.805H108.822V0.0101852H138.494Z" fill="white"/>
+      <path d="M247.297 29.8751H180.522V62.233H240.19V92.0977H180.522V187.93H247.297V217.795H150.849V7.62939e-06H247.297V29.8649V29.8751Z" fill="white"/>
+      <path d="M365.39 0.0101852V46.3695C365.39 83.0828 356.119 107.046 340.661 121.973C361.376 149.04 371.577 194.778 371.577 217.805H341.278C341.278 199.764 335.09 161.179 314.386 137.531C306.662 140.329 298.311 142.202 289.344 143.443V217.805H259.671V0.0101852H365.4H365.39ZM335.404 46.3695V29.8751H289.344V113.568C317.165 109.518 335.404 94.8963 335.404 46.3593V46.3695Z" fill="white"/>
+      <path d="M489.66 0.0101852V46.3695C489.66 83.0828 480.389 107.046 464.932 121.973C485.647 149.04 495.847 194.778 495.847 217.805H465.548C465.548 199.764 459.361 161.179 438.656 137.531C430.932 140.329 422.581 142.202 413.614 143.443V217.805H383.942V0.0101852H489.67H489.66ZM459.675 46.3695V29.8751H413.614V113.568C441.437 109.518 459.675 94.8963 459.675 46.3593V46.3695Z" fill="white"/>
+      <path d="M615.164 0.0101852V217.805H508.201V0.0101852H615.164ZM585.481 187.93V29.8649H537.874V187.93H585.481Z" fill="white"/>
+      <path d="M681.429 197.548L21.0027 111.189L19.8198 121.304L681.429 207.795V197.548Z" fill="white"/>
+    </svg>
+  </a>
+  <nav>
+    <a href="#" data-page="work" data-i18n="nav.work">TRABAJOS</a>
+    <a href="#" data-page="contact" data-i18n="nav.contact">CONTACTO</a>
+    <div class="lang">
+      <span class="active" data-lang="es">ES</span>
+      <span data-lang="en">EN</span>
+    </div>
+  </nav>
+</header>
+
+<section id="page-home" class="active">
+  <div class="home-reel">
+    <video autoplay muted loop playsinline aria-label="Reel FIERRO 2026">
+      <source src="REEL_FIERRO.mp4" type="video/mp4">
+    </video>
+    <div class="home-icons">
+      <a href="mailto:contactofierroav@gmail.com" aria-label="Mail">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="1"/>
+          <path d="m3 7 9 6 9-6"/>
+        </svg>
+      </a>
+      <a href="https://instagram.com/fierro.av" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="page-work">
+  <div class="work-page">
+    <h1 class="section-label" data-i18n="section.work">TRABAJOS</h1>
+    <div class="work-grid">
+      <article class="proj-card" data-id="0" aria-label="Viajes de Amor — Jero Jones">
+        <video autoplay muted loop playsinline><source src="viajes-de-amor.mp4" type="video/mp4"></video>
+        <div class="proj-label"><span>VIAJES DE AMOR</span><span class="artist">JERO JONES</span></div>
+      </article>
+      <article class="proj-card" data-id="1" aria-label="ENERC Se Proyecta">
+        <video autoplay muted loop playsinline><source src="enerc.mp4" type="video/mp4"></video>
+        <div class="proj-label"><span>ENERC SE PROYECTA</span><span class="artist">ENERC</span></div>
+      </article>
+      <article class="proj-card" data-id="2" aria-label="Fervor — Cobertura de Show">
+        <video autoplay muted loop playsinline><source src="fervor.mp4" type="video/mp4"></video>
+        <div class="proj-label"><span>FERVOR</span><span class="artist" data-i18n="proj.fervor.subtitle">COBERTURA DE SHOW</span></div>
+      </article>
+      <article class="proj-card" data-id="3" aria-label="Experimento Stanislavski — BARS 2025">
+        <video autoplay muted loop playsinline><source src="stanislavski.mp4" type="video/mp4"></video>
+        <div class="proj-label"><span>EXPERIMENTO STANISLAVSKI</span><span class="artist">BARS 2025</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="page-project">
+  <div class="project-page" id="project-content"></div>
+</section>
+
+<section id="page-contact">
+  <div class="contact-page active">
+    <div class="section-label" data-i18n="section.contact">CONTACTO</div>
+    <div class="contact-mail">
+      <a href="mailto:contactofierroav@gmail.com">contactofierroav<span class="at">@gmail.com</span></a>
+    </div>
+    <div class="contact-links">
+      <a href="https://instagram.com/fierro.av" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      <a href="https://youtube.com/@fierroaudiovisual" target="_blank" rel="noopener">YOUTUBE ↗</a>
+    </div>
+    <div class="contact-location" data-i18n="contact.location">BUENOS AIRES — ARG</div>
+  </div>
+</section>
+
+<div class="project-bottom-bar" id="projectBottomBar">
+  <span id="navBackWork" data-i18n="nav.backToWork">VOLVER A TRABAJOS</span>
+</div>
+
+<footer id="mainFooter">
+  <span>FIERRO 2026</span>
+</footer>
+
+<script>
+// ============================================
+// DATOS
+// ============================================
+const projects = [
+  { id:0, title:'Viajes de Amor', artist:'JERO JONES', year:'2025', dir:'Lulo Innocenti', prod:'Mayra Zuvilivia · Bruno Levy', video:'viajes-de-amor.mp4' },
+  { id:1, title:'ENERC Se Proyecta', artist:'ENERC', year:'2025', dir:'Lulo Innocenti', prod:'Eric Ovelar', video:'enerc.mp4' },
+  { id:2, title:'Fervor', artist:'COBERTURA DE SHOW', year:'2025', dir:'Lulo Innocenti', prod:'Bruno Levy · Facundo López Estévez', video:'fervor.mp4' },
+  { id:3, title:'Experimento Stanislavski', artist:'BARS 2025', year:'2024', dir:'Lulo Innocenti · Thiago Zavallone', prod:'Bruno Levy · Eric Ovelar', video:'stanislavski.mp4' }
+];
+
+// ============================================
+// I18N
+// ============================================
+const translations = {
+  es: {
+    'nav.work': 'TRABAJOS',
+    'nav.contact': 'CONTACTO',
+    'nav.backToWork': 'VOLVER A TRABAJOS',
+    'section.work': 'TRABAJOS',
+    'section.contact': 'CONTACTO',
+    'contact.location': 'BUENOS AIRES — ARG',
+    'credits.direction': 'DIRECCIÓN',
+    'credits.production': 'PRODUCCIÓN',
+    'proj.fervor.subtitle': 'COBERTURA DE SHOW'
+  },
+  en: {
+    'nav.work': 'WORK',
+    'nav.contact': 'CONTACT',
+    'nav.backToWork': 'BACK TO WORK',
+    'section.work': 'WORK',
+    'section.contact': 'CONTACT',
+    'contact.location': 'BUENOS AIRES — ARG',
+    'credits.direction': 'DIRECTION',
+    'credits.production': 'PRODUCTION',
+    'proj.fervor.subtitle': 'LIVE SHOW COVERAGE'
+  }
+};
+
+let currentLang = 'es';
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[currentLang][key]) {
+      el.textContent = translations[currentLang][key];
+    }
+  });
+  document.documentElement.lang = currentLang;
+  // Re-renderizar el proyecto si está activo, para traducir los labels
+  if (document.getElementById('page-project').classList.contains('active')) {
+    const currentProj = document.querySelector('.project-page')?.dataset.projectId;
+    if (currentProj !== undefined) {
+      renderProject(projects[parseInt(currentProj)], false);
+    }
+  }
+}
+
+// ============================================
+// FLASH
+// ============================================
+function triggerFlash(callback) {
+  const flash = document.getElementById('flash');
+  flash.classList.add('active');
+  setTimeout(() => {
+    if (callback) callback();
+    setTimeout(() => flash.classList.remove('active'), 60);
+  }, 80);
+}
+
+// ============================================
+// NAVIGATION
+// ============================================
+const sections = ['home','work','project','contact'];
+
+function showPage(page){
+  triggerFlash(() => {
+    sections.forEach(s => {
+      document.getElementById('page-'+s).classList.remove('active');
+    });
+    document.getElementById('page-'+page).classList.add('active');
+
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    const navMap = { work: 'work', contact: 'contact', project: 'work' };
+    if(navMap[page]){
+      document.querySelectorAll('nav a[data-page]').forEach(a => {
+        if(a.getAttribute('data-page') === navMap[page]) a.classList.add('active');
+      });
+    }
+
+    const bottomBar = document.getElementById('projectBottomBar');
+    const footer = document.getElementById('mainFooter');
+    if(page === 'project'){
+      bottomBar.classList.add('visible');
+      footer.classList.add('hidden');
+    } else {
+      bottomBar.classList.remove('visible');
+      footer.classList.remove('hidden');
+    }
+  });
+}
+
+function renderProject(p, withFlash = true){
+  const t = translations[currentLang];
+  const html = `
+    <div class="project-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="${p.video}" type="video/mp4">
+      </video>
+    </div>
+    <div class="project-gradient"></div>
+    <div class="project-overlay">
+      <div class="project-overlay-text">
+        <h1 class="project-title">${p.title}</h1>
+        <div class="project-artist">${p.artist} · ${p.year}</div>
+      </div>
+      <div class="project-credits">
+        <div class="row"><span class="label">${t['credits.direction']}</span><span>${p.dir}</span></div>
+        <div class="row"><span class="label">${t['credits.production']}</span><span>${p.prod}</span></div>
+      </div>
+    </div>
+  `;
+  const container = document.getElementById('project-content');
+  container.innerHTML = html;
+  container.dataset.projectId = p.id;
+}
+
+// ============================================
+// EVENT LISTENERS
+// ============================================
+document.getElementById('navBackWork').addEventListener('click', () => showPage('work'));
+
+document.querySelectorAll('[data-page]').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    showPage(el.getAttribute('data-page'));
+  });
+});
+
+document.getElementById('logoLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  showPage('home');
+});
+
+document.querySelectorAll('.proj-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const id = parseInt(card.getAttribute('data-id'));
+    triggerFlash(() => {
+      renderProject(projects[id], false);
+      sections.forEach(s => document.getElementById('page-'+s).classList.remove('active'));
+      document.getElementById('page-project').classList.add('active');
+      document.getElementById('projectBottomBar').classList.add('visible');
+      document.getElementById('mainFooter').classList.add('hidden');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.querySelectorAll('nav a[data-page="work"]').forEach(a => a.classList.add('active'));
+    });
+  });
+});
+
+// Language switch
+document.querySelectorAll('.lang span').forEach(s => {
+  s.addEventListener('click', () => {
+    document.querySelectorAll('.lang span').forEach(x => x.classList.remove('active'));
+    s.classList.add('active');
+    currentLang = s.getAttribute('data-lang');
+    applyTranslations();
+  });
+});
+</script>
+
+</body>
+</html>
