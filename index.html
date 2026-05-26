@@ -34,9 +34,11 @@
 <meta name="twitter:image" content="https://fierroav.com/og-image.jpg">
 <meta name="twitter:image:alt" content="FIERRO — Estudio Audiovisual">
 
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="shortcut icon" type="image/png" href="favicon-32.png">
-<link rel="apple-touch-icon" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+<link rel="shortcut icon" href="favicon.ico">
 <meta name="theme-color" content="#000000">
 <meta name="msapplication-TileColor" content="#000000">
 
@@ -77,6 +79,159 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+  }
+
+  /* Ocultar cursor nativo en desktop (en mobile se mantiene el touch normal) */
+  @media (hover: hover) and (pointer: fine) {
+    html, body, a, button, [role="button"], .proj-card, [data-page], .lang span, #logoLink {
+      cursor: none !important;
+    }
+  }
+
+  /* ==== CURSOR CRUZ DE CÁMARA ==== */
+  .cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+    mix-blend-mode: difference;
+    display: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .cursor { display: block; }
+  }
+  .cursor.hover {
+    width: 76px;
+    height: 76px;
+  }
+  .cursor svg {
+    width: 100%;
+    height: 100%;
+  }
+  .cursor circle {
+    transition: r 0.2s ease;
+  }
+  .cursor line {
+    stroke: #fff;
+    stroke-width: 1;
+    transition: stroke-width 0.2s ease;
+  }
+  .cursor.hover line { stroke-width: 0.7; }
+
+  /* ==== LOADING SCREEN (proyector 16mm) ==== */
+  .loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-frame {
+    position: relative;
+    width: min(60vw, 60vh);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader-frame::before,
+  .loader-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid rgba(255,255,255,0.65);
+  }
+  .loader-frame::after {
+    inset: -22px;
+    border: 0.5px solid rgba(255,255,255,0.18);
+  }
+  /* Cruz central tipo proyector */
+  .loader-frame .cross-h,
+  .loader-frame .cross-v {
+    position: absolute;
+    background: rgba(255,255,255,0.25);
+  }
+  .loader-frame .cross-h {
+    left: 0; right: 0;
+    top: 50%; height: 1px;
+    transform: translateY(-50%);
+  }
+  .loader-frame .cross-v {
+    top: 0; bottom: 0;
+    left: 50%; width: 1px;
+    transform: translateX(-50%);
+  }
+  /* Círculo del cuentaregresiva */
+  .loader-circle {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+  /* Línea que rota */
+  .loader-sweep {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.45) 350deg, transparent 360deg);
+    mask: radial-gradient(circle, transparent 49%, #000 50%, #000 51%, transparent 52%);
+    -webkit-mask: radial-gradient(circle, transparent 49%, #000 50%, #000 51%, transparent 52%);
+    animation: sweep 1s linear infinite;
+  }
+  @keyframes sweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  .loader-number {
+    position: relative;
+    font-size: clamp(80px, 18vw, 220px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #fff;
+    z-index: 2;
+    font-variant-numeric: tabular-nums;
+  }
+  .loader-label {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "SF Mono", Menlo, Monaco, monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+  }
+  /* Grano sutil sobre el loader (filmico) */
+  .loader::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    pointer-events: none;
+    animation: grain 0.2s steps(4) infinite;
+  }
+  @keyframes grain {
+    0%, 100% { transform: translate(0,0); }
+    25% { transform: translate(-2%,-1%); }
+    50% { transform: translate(1%,2%); }
+    75% { transform: translate(-1%,1%); }
   }
 
   :root {
@@ -145,6 +300,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.04);
+    transition: transform 0.4s ease-out;
   }
   .home-icons {
     position: absolute;
@@ -420,6 +577,37 @@
 </head>
 <body>
 
+<!-- ============================================
+     LOADING SCREEN (solo primera visita)
+     ============================================ -->
+<div class="loader" id="loader">
+  <div class="loader-frame">
+    <span class="cross-h"></span>
+    <span class="cross-v"></span>
+    <div class="loader-circle"></div>
+    <div class="loader-sweep"></div>
+    <div class="loader-number" id="loaderNumber">5</div>
+    <div class="loader-label">FIERRO — 16MM</div>
+  </div>
+</div>
+
+<!-- ============================================
+     CURSOR CRUZ DE CÁMARA
+     ============================================ -->
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <!-- líneas externas largas (mira de cámara) -->
+    <line x1="20" y1="0" x2="20" y2="14"/>
+    <line x1="20" y1="26" x2="20" y2="40"/>
+    <line x1="0" y1="20" x2="14" y2="20"/>
+    <line x1="26" y1="20" x2="40" y2="20"/>
+    <!-- círculo central -->
+    <circle cx="20" cy="20" r="3" fill="none" stroke="#fff" stroke-width="1"/>
+    <!-- punto central -->
+    <circle cx="20" cy="20" r="0.8" fill="#fff"/>
+  </svg>
+</div>
+
 <div class="flash" id="flash"></div>
 
 <header>
@@ -685,6 +873,120 @@ document.querySelectorAll('.lang span').forEach(s => {
     applyTranslations();
   });
 });
+
+// ============================================
+// CURSOR PERSONALIZADO (cruz de cámara)
+// ============================================
+(function initCursor() {
+  // Solo si hay mouse fino (no en touch)
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let curX = mouseX;
+  let curY = mouseY;
+
+  // Lag muy sutil para que se sienta "vivo" pero no molesto
+  const lag = 0.35;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    curX += (mouseX - curX) * lag;
+    curY += (mouseY - curY) * lag;
+    cursor.style.transform = `translate(${curX}px, ${curY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // Hover en elementos interactivos: agranda el cursor
+  function attachHoverListeners() {
+    const interactive = document.querySelectorAll('a, button, .proj-card, [data-page], .lang span, #logoLink, [role="button"]');
+    interactive.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+  }
+  attachHoverListeners();
+
+  // Re-attach cuando cambia la página (porque se generan elementos nuevos)
+  const observer = new MutationObserver(() => {
+    attachHoverListeners();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Cuando el mouse sale de la ventana, oculta cursor
+  document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+  document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+})();
+
+// ============================================
+// LOADING SCREEN (solo primera visita por sesión)
+// ============================================
+(function initLoader() {
+  const loader = document.getElementById('loader');
+  const num = document.getElementById('loaderNumber');
+  if (!loader || !num) return;
+
+  // Ya vista esta sesión? Saltear.
+  const alreadySeen = sessionStorage.getItem('fierro_intro_seen');
+  if (alreadySeen) {
+    loader.classList.add('hidden');
+    setTimeout(() => loader.remove(), 500);
+    return;
+  }
+
+  // Cuenta regresiva 5 → 4 → 3 → 2 → 1 → ocultar
+  const sequence = ['5', '4', '3', '2', '1'];
+  let idx = 0;
+
+  // Mostrar primer número de inmediato (ya está en HTML)
+  // Luego cambiar cada ~480ms (total ~2.4s)
+  const interval = setInterval(() => {
+    idx++;
+    if (idx < sequence.length) {
+      num.textContent = sequence[idx];
+    } else {
+      clearInterval(interval);
+      loader.classList.add('hidden');
+      sessionStorage.setItem('fierro_intro_seen', '1');
+      setTimeout(() => loader.remove(), 500);
+    }
+  }, 480);
+})();
+
+// ============================================
+// PARALLAX SUTIL DEL REEL EN EL HOME
+// ============================================
+(function initParallax() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  const reelVideo = document.querySelector('#page-home .home-reel video');
+  if (!reelVideo) return;
+
+  const maxOffset = 8; // píxeles de movimiento máximo
+
+  document.addEventListener('mousemove', (e) => {
+    // Solo aplicar si home está activo
+    if (!document.getElementById('page-home').classList.contains('active')) return;
+
+    const x = (e.clientX / window.innerWidth - 0.5) * 2; // -1 a 1
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+
+    const offsetX = -x * maxOffset;
+    const offsetY = -y * maxOffset;
+
+    reelVideo.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1.04)`;
+    reelVideo.style.transition = 'transform 0.4s ease-out';
+  });
+})();
+
 </script>
 
 </body>

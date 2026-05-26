@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — FIERRO</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="theme-color" content="#000000">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #000;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Cursor cruz de cámara también acá */
+  @media (hover: hover) and (pointer: fine) {
+    html, body, a { cursor: none !important; }
+  }
+  .cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease;
+    mix-blend-mode: difference;
+    display: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .cursor { display: block; }
+  }
+  .cursor.hover { width: 76px; height: 76px; }
+  .cursor svg { width: 100%; height: 100%; }
+  .cursor line { stroke: #fff; stroke-width: 1; transition: stroke-width 0.2s ease; }
+  .cursor.hover line { stroke-width: 0.7; }
+
+  /* Background: video de bloopers o fallback */
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    filter: grayscale(1) contrast(1.1);
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 48px;
+  }
+  .logo { width: 105px; height: auto; cursor: pointer; display: block; }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: "SF Mono", Menlo, Monaco, monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    padding-bottom: 4px;
+    transition: opacity 0.2s;
+  }
+  nav a:hover { opacity: 0.6; }
+
+  /* Contenido principal */
+  main {
+    position: relative;
+    z-index: 5;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 48px;
+  }
+  .error-code {
+    font-size: clamp(120px, 22vw, 360px);
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    margin-bottom: 24px;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+  }
+  .error-code::before {
+    content: '404';
+    position: absolute;
+    inset: 0;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    transform: translate(8px, 8px);
+    z-index: -1;
+  }
+  .error-meta {
+    font-family: "SF Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    opacity: 0.55;
+    margin-bottom: 36px;
+  }
+  .error-title {
+    font-size: clamp(20px, 2.2vw, 32px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+    max-width: 600px;
+  }
+  .error-subtitle {
+    font-family: "SF Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    opacity: 0.65;
+    margin-bottom: 48px;
+    max-width: 600px;
+    text-transform: uppercase;
+  }
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: "SF Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 6px;
+    transition: opacity 0.2s, gap 0.2s;
+  }
+  .back-btn:hover { opacity: 0.7; gap: 18px; }
+
+  /* Glitch sutil en el 404 */
+  @keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 1px); }
+    40% { transform: translate(2px, -1px); }
+    60% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 2px); }
+  }
+  .error-code {
+    animation: glitch 4s infinite;
+    animation-timing-function: steps(1);
+  }
+
+  /* Footer */
+  footer {
+    position: fixed;
+    bottom: 0; left: 0;
+    z-index: 10;
+    padding: 28px 48px;
+    font-family: "SF Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    opacity: 0.55;
+  }
+
+  /* Mobile */
+  @media (max-width: 800px) {
+    header, footer { padding: 18px 20px; }
+    .logo { width: 75px; }
+    main { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cursor cruz de cámara -->
+<div class="cursor" id="cursor">
+  <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+    <line x1="20" y1="0" x2="20" y2="14"/>
+    <line x1="20" y1="26" x2="20" y2="40"/>
+    <line x1="0" y1="20" x2="14" y2="20"/>
+    <line x1="26" y1="20" x2="40" y2="20"/>
+    <circle cx="20" cy="20" r="3" fill="none" stroke="#fff" stroke-width="1"/>
+    <circle cx="20" cy="20" r="0.8" fill="#fff"/>
+  </svg>
+</div>
+
+<!-- Video de bloopers de fondo (cuando esté disponible, se llama bloopers.mp4) -->
+<video class="bg-video" autoplay muted loop playsinline onerror="this.style.display='none'">
+  <source src="bloopers.mp4" type="video/mp4">
+</video>
+
+<header>
+  <a href="/" id="logoLink" aria-label="FIERRO — Inicio">
+    <svg class="logo" viewBox="0 0 682 218" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="FIERRO">
+      <path d="M96.4482 29.8751H29.6724V62.233H89.3309V92.0977H29.6724V217.795H0V0H96.4482V29.8649V29.8751Z" fill="white"/>
+      <path d="M138.494 0.0101852V217.805H108.822V0.0101852H138.494Z" fill="white"/>
+      <path d="M247.297 29.8751H180.522V62.233H240.19V92.0977H180.522V187.93H247.297V217.795H150.849V7.62939e-06H247.297V29.8649V29.8751Z" fill="white"/>
+      <path d="M365.39 0.0101852V46.3695C365.39 83.0828 356.119 107.046 340.661 121.973C361.376 149.04 371.577 194.778 371.577 217.805H341.278C341.278 199.764 335.09 161.179 314.386 137.531C306.662 140.329 298.311 142.202 289.344 143.443V217.805H259.671V0.0101852H365.4H365.39ZM335.404 46.3695V29.8751H289.344V113.568C317.165 109.518 335.404 94.8963 335.404 46.3593V46.3695Z" fill="white"/>
+      <path d="M489.66 0.0101852V46.3695C489.66 83.0828 480.389 107.046 464.932 121.973C485.647 149.04 495.847 194.778 495.847 217.805H465.548C465.548 199.764 459.361 161.179 438.656 137.531C430.932 140.329 422.581 142.202 413.614 143.443V217.805H383.942V0.0101852H489.67H489.66ZM459.675 46.3695V29.8751H413.614V113.568C441.437 109.518 459.675 94.8963 459.675 46.3593V46.3695Z" fill="white"/>
+      <path d="M615.164 0.0101852V217.805H508.201V0.0101852H615.164ZM585.481 187.93V29.8649H537.874V187.93H585.481Z" fill="white"/>
+      <path d="M681.429 197.548L21.0027 111.189L19.8198 121.304L681.429 207.795V197.548Z" fill="white"/>
+    </svg>
+  </a>
+  <nav>
+    <a href="/">VOLVER</a>
+  </nav>
+</header>
+
+<main>
+  <div class="error-code">404</div>
+  <div class="error-meta">SCENE NOT FOUND</div>
+  <div class="error-title">Esta página no existe.</div>
+  <div class="error-subtitle">Como una toma que no quedó en el corte final.</div>
+  <a href="/" class="back-btn">VOLVER AL CORTE FINAL <span>→</span></a>
+</main>
+
+<footer>FIERRO 2026</footer>
+
+<script>
+// Cursor cruz de cámara
+(function() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
+
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let curX = mouseX;
+  let curY = mouseY;
+  const lag = 0.35;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  function animate() {
+    curX += (mouseX - curX) * lag;
+    curY += (mouseY - curY) * lag;
+    cursor.style.transform = `translate(${curX}px, ${curY}px) translate(-50%, -50%)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  document.querySelectorAll('a').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+})();
+</script>
+
+</body>
+</html>
