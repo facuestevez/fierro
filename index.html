@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
 
 <title>FIERRO — Estudio Audiovisual | Buenos Aires</title>
 <meta name="description" content="FIERRO es un estudio audiovisual de Buenos Aires. Producimos videoclips, spots y contenido para artistas. Identidad, dirección y producción.">
@@ -77,8 +80,26 @@
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+  html {
+    background: #000;
+    /* Safe areas para iPhone con notch */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  body { overflow-y: hidden; background: #000; }
+  /* En mobile, permitir scroll vertical normal */
+  @media (max-width: 800px) {
+    html {
+      padding: 0;
+    }
+    html, body {
+      height: auto;
+      min-height: 100%;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   /* Ocultar cursor nativo en desktop (en mobile se mantiene el touch normal) */
@@ -92,8 +113,8 @@
   .cursor {
     position: fixed;
     top: 0; left: 0;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     pointer-events: none;
     z-index: 10000;
     transform: translate(-50%, -50%);
@@ -105,8 +126,8 @@
     .cursor { display: block; }
   }
   .cursor.hover {
-    width: 76px;
-    height: 76px;
+    width: 56px;
+    height: 56px;
   }
   .cursor svg {
     width: 100%;
@@ -561,17 +582,101 @@
     .logo { width: 75px; }
     nav { gap: 18px; }
     .lang { margin-left: 6px; }
-    .work-page { padding-top: 80px; padding-bottom: 50px; }
-    .work-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); gap: 10px; }
+
+    /* Home: ocupa toda la pantalla */
+    .home-reel {
+      width: 100vw;
+      height: 100svh;
+      min-height: 100vh;
+    }
     .home-icons svg { width: 20px; height: 20px; }
     .home-icons { gap: 20px; }
+
+    /* Trabajos: ya no es altura fija, scroll natural */
+    .work-page {
+      height: auto;
+      min-height: 100vh;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    /* Ocultar el "TRABAJOS" duplicado en mobile (ya está en el menú) */
+    .work-page > .section-label {
+      display: none;
+    }
+    .work-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 56vw);
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+    .proj-label {
+      bottom: 14px;
+      left: 16px;
+      right: 16px;
+      gap: 10px;
+      font-size: 16px;
+    }
+    .proj-label .artist {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+    }
+
+    /* Proyecto: full screen sin scroll, ya está bien */
+    .project-page {
+      height: 100svh;
+      min-height: 100vh;
+    }
     .project-overlay {
       flex-direction: column;
       align-items: flex-start;
       gap: 20px;
-      bottom: 60px;
+      bottom: 80px;
     }
-    .project-credits { text-align: left; min-width: 0; width: 100%; font-size: 10px; }
+    .project-credits {
+      text-align: left;
+      min-width: 0;
+      width: 100%;
+      font-size: 10px;
+    }
+    .project-title { font-size: clamp(36px, 11vw, 64px); }
+
+    /* Contacto: scroll y mail más chico para que no se corte */
+    .contact-page {
+      height: auto;
+      min-height: 100vh;
+      padding-top: 110px;
+      padding-bottom: 100px;
+    }
+    .contact-mail {
+      font-size: clamp(28px, 9vw, 56px);
+      margin-bottom: 36px;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      line-height: 1.05;
+    }
+
+    /* Footer: que no se pise con contenido, fondo opaco */
+    footer {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      background: #000;
+      padding: 32px 20px 24px;
+    }
+
+    /* Header: fondo más opaco para que se lea sobre videos */
+    header {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+      padding: 16px 20px 24px;
+    }
+
+    /* Project bottom bar: opaca y con fondo en mobile */
+    .project-bottom-bar {
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 16px 20px;
+    }
   }
 </style>
 </head>
@@ -712,7 +817,7 @@
 const projects = [
   { id:0, title:'Viajes de Amor', artist:'JERO JONES', year:'2025', dir:'Lulo Innocenti', prod:'Mayra Zuvilivia · Bruno Levy', video:'viajes-de-amor.mp4' },
   { id:1, title:'ENERC Se Proyecta', artist:'ENERC', year:'2025', dir:'Lulo Innocenti', prod:'Eric Ovelar', video:'enerc.mp4' },
-  { id:2, title:'Fervor', artist:'COBERTURA DE SHOW', year:'2025', dir:'Lulo Innocenti', prod:'Bruno Levy · Facundo López Estévez', video:'fervor.mp4' },
+  { id:2, title:'Fervor', artist:'COBERTURA DE SHOW', year:'2026', dir:'Lulo Innocenti', prod:'Bruno Levy · Facundo López Estévez', video:'fervor.mp4' },
   { id:3, title:'Experimento Stanislavski', artist:'BARS 2025', year:'2024', dir:'Lulo Innocenti · Thiago Zavallone', prod:'Bruno Levy · Eric Ovelar', video:'stanislavski.mp4' }
 ];
 
@@ -797,13 +902,23 @@ function showPage(page){
 
     const bottomBar = document.getElementById('projectBottomBar');
     const footer = document.getElementById('mainFooter');
+    const isMobile = window.matchMedia('(max-width: 800px)').matches;
+
     if(page === 'project'){
       bottomBar.classList.add('visible');
       footer.classList.add('hidden');
     } else {
       bottomBar.classList.remove('visible');
-      footer.classList.remove('hidden');
+      // En mobile, ocultar footer en home también (el reel ocupa todo)
+      if (isMobile && page === 'home') {
+        footer.classList.add('hidden');
+      } else {
+        footer.classList.remove('hidden');
+      }
     }
+
+    // Scroll al top siempre que cambies de página
+    window.scrollTo(0, 0);
   });
 }
 
@@ -872,6 +987,33 @@ document.querySelectorAll('.lang span').forEach(s => {
     currentLang = s.getAttribute('data-lang');
     applyTranslations();
   });
+});
+
+// ============================================
+// INICIALIZACIÓN: ocultar footer en mobile al cargar (porque home arranca activo)
+// ============================================
+(function initFooterState() {
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+  const homeActive = document.getElementById('page-home').classList.contains('active');
+  if (isMobile && homeActive) {
+    document.getElementById('mainFooter').classList.add('hidden');
+  }
+})();
+
+// Si cambia el viewport (rotar pantalla, redimensionar), actualizar
+window.addEventListener('resize', () => {
+  const isMobile = window.matchMedia('(max-width: 800px)').matches;
+  const footer = document.getElementById('mainFooter');
+  const homeActive = document.getElementById('page-home').classList.contains('active');
+  const projectActive = document.getElementById('page-project').classList.contains('active');
+
+  if (projectActive) {
+    footer.classList.add('hidden');
+  } else if (isMobile && homeActive) {
+    footer.classList.add('hidden');
+  } else {
+    footer.classList.remove('hidden');
+  }
 });
 
 // ============================================
