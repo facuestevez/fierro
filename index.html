@@ -236,6 +236,14 @@
     transform: scale(1.04);
     transition: transform 0.4s ease-out;
   }
+  /* Por defecto (desktop): mostrar horizontal, ocultar vertical */
+  .home-reel .reel-vertical { display: none; }
+  .home-reel .reel-horizontal { display: block; }
+  /* En pantallas verticales (mobile portrait): invertir */
+  @media (max-aspect-ratio: 1/1) {
+    .home-reel .reel-horizontal { display: none; }
+    .home-reel .reel-vertical { display: block; }
+  }
   .home-icons {
     position: absolute;
     bottom: var(--top-margin);
@@ -637,8 +645,13 @@
 
 <section id="page-home" class="active">
   <div class="home-reel">
-    <video autoplay muted loop playsinline aria-label="Reel FIERRO 2026">
+    <!-- Video horizontal: desktop / tablet landscape -->
+    <video class="reel-horizontal" autoplay muted loop playsinline aria-label="Reel FIERRO 2026" preload="auto">
       <source src="REEL_FIERRO.mp4" type="video/mp4">
+    </video>
+    <!-- Video vertical: mobile / tablet portrait -->
+    <video class="reel-vertical" autoplay muted loop playsinline aria-label="Reel FIERRO 2026 vertical" preload="auto">
+      <source src="REEL_FIERRO_vertical.mp4" type="video/mp4">
     </video>
     <div class="home-icons">
       <a href="mailto:contactofierroav@gmail.com" aria-label="Mail">
@@ -898,6 +911,34 @@ document.querySelectorAll('.lang span').forEach(s => {
   }
 })();
 
+// ============================================
+// CARGAR SOLO EL REEL CORRECTO SEGÚN ORIENTACIÓN
+// (Ahorra ~30MB de banda al usuario)
+// ============================================
+(function initReelLoader() {
+  const isPortrait = window.matchMedia('(max-aspect-ratio: 1/1)').matches;
+  const horizontal = document.querySelector('.home-reel .reel-horizontal');
+  const vertical = document.querySelector('.home-reel .reel-vertical');
+
+  if (isPortrait) {
+    // Pantalla vertical: solo cargar el vertical, eliminar source del horizontal
+    if (horizontal) {
+      horizontal.removeAttribute('src');
+      const source = horizontal.querySelector('source');
+      if (source) source.remove();
+      horizontal.load();
+    }
+  } else {
+    // Pantalla horizontal: solo cargar el horizontal
+    if (vertical) {
+      vertical.removeAttribute('src');
+      const source = vertical.querySelector('source');
+      if (source) source.remove();
+      vertical.load();
+    }
+  }
+})();
+
 // Si cambia el viewport (rotar pantalla, redimensionar), actualizar
 window.addEventListener('resize', () => {
   const isMobile = window.matchMedia('(max-width: 800px)').matches;
@@ -972,16 +1013,16 @@ window.addEventListener('resize', () => {
 (function initParallax() {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
-  const reelVideo = document.querySelector('#page-home .home-reel video');
+  // Parallax solo se aplica en desktop (donde se muestra el horizontal)
+  const reelVideo = document.querySelector('#page-home .home-reel .reel-horizontal');
   if (!reelVideo) return;
 
-  const maxOffset = 8; // píxeles de movimiento máximo
+  const maxOffset = 8;
 
   document.addEventListener('mousemove', (e) => {
-    // Solo aplicar si home está activo
     if (!document.getElementById('page-home').classList.contains('active')) return;
 
-    const x = (e.clientX / window.innerWidth - 0.5) * 2; // -1 a 1
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
     const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
     const offsetX = -x * maxOffset;
