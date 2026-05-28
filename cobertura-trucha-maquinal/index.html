@@ -46,7 +46,7 @@
   .hero-img {
     position: absolute; inset: 0; width: 100%; height: 100%;
     object-fit: cover; object-position: center top;
-    filter: brightness(0.85) grayscale(5%);
+    filter: brightness(1.0) grayscale(0%);
   }
   .hero-overlay {
     position: absolute; inset: 0;
@@ -119,7 +119,7 @@
   }
 
   /* TRABAJOS */
-  .trabajos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .trabajos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .trabajo-card {
     position: relative; overflow: hidden; background: #111;
     aspect-ratio: 16/9; display: block; text-decoration: none; color: #fff;
@@ -237,7 +237,7 @@
     .section-title { white-space: normal; }
     .concepto-grid { grid-template-columns: 1fr; gap: 48px; }
     .camaras-grid { grid-template-columns: 1fr 1fr; }
-    .trabajos-grid { grid-template-columns: 1fr; }
+    .trabajos-grid { grid-template-columns: 1fr 1fr; }
     .presup-total-block { flex-direction: column; align-items: flex-start; gap: 20px; padding: 36px 28px; }
     .equipo-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 8px; }
@@ -332,42 +332,6 @@
     </div>
   </section>
 
-  <section class="section" id="trabajos">
-    <div class="section-label">TRABAJOS</div>
-    <h2 class="section-title">Lo que hacemos</h2>
-    <div class="trabajos-grid">
-      <a href="https://youtube.com/watch?v=oyjUaIN1XDs" target="_blank" rel="noopener" class="trabajo-card">
-        <video autoplay muted loop playsinline><source src="../fervor.mp4" type="video/mp4"></video>
-        <div class="trabajo-label">
-          <span class="titulo">FERVOR</span>
-          <span class="artist">COBERTURA DE SHOW</span>
-        </div>
-      </a>
-      <a href="https://youtube.com/watch?v=uRpBrjlDZJI" target="_blank" rel="noopener" class="trabajo-card">
-        <video autoplay muted loop playsinline><source src="../viajes-de-amor.mp4" type="video/mp4"></video>
-        <div class="trabajo-label">
-          <span class="titulo">VIAJES DE METAL / AMOR</span>
-          <span class="artist">JERO JONES</span>
-        </div>
-      </a>
-      <a href="https://youtube.com/watch?v=g0ZjGqqa-Ow" target="_blank" rel="noopener" class="trabajo-card">
-        <video autoplay muted loop playsinline><source src="../enerc.mp4" type="video/mp4"></video>
-        <div class="trabajo-label">
-          <span class="titulo">ENERC SE PROYECTA</span>
-          <span class="artist">ENERC</span>
-        </div>
-      </a>
-      <a href="https://youtube.com/watch?v=wucOZLTX1qk" target="_blank" rel="noopener" class="trabajo-card">
-        <video autoplay muted loop playsinline><source src="../stanislavski.mp4" type="video/mp4"></video>
-        <div class="trabajo-label">
-          <span class="titulo">EXPERIMENTO STANISLAVSKI</span>
-          <span class="artist">BARS 2025</span>
-        </div>
-      </a>
-    </div>
-  </section>
-
-
   <section class="section refs-section" id="referencias">
     <video class="refs-bg" autoplay muted loop playsinline>
       <source src="../trucha-show.mp4" type="video/mp4">
@@ -423,6 +387,8 @@
     </div>
   </section>
 
+
+
   <section class="section" id="presupuesto">
     <div class="section-label">PRESUPUESTO</div>
     <h2 class="section-title">Inversión</h2>
@@ -450,6 +416,41 @@
     </div>
   </section>
 
+
+  <section class="section" id="trabajos">
+    <div class="section-label">TRABAJOS</div>
+    <h2 class="section-title">Lo que hacemos</h2>
+    <div class="trabajos-grid">
+      <a href="https://youtube.com/watch?v=oyjUaIN1XDs" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../fervor.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">FERVOR</span>
+          <span class="artist">COBERTURA DE SHOW</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=uRpBrjlDZJI" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../viajes-de-amor.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">VIAJES DE METAL / AMOR</span>
+          <span class="artist">JERO JONES</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=g0ZjGqqa-Ow" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../enerc.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">ENERC SE PROYECTA</span>
+          <span class="artist">ENERC</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=wucOZLTX1qk" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../stanislavski.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">EXPERIMENTO STANISLAVSKI</span>
+          <span class="artist">BARS 2025</span>
+        </div>
+      </a>
+    </div>
+  </section>
 </main>
 
 <footer>
