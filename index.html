@@ -125,37 +125,8 @@
     }
   }
 
-  /* Ocultar cursor nativo en desktop (en mobile se mantiene el touch normal) */
-  @media (hover: hover) and (pointer: fine) {
-    html, body, a, button, [role="button"], .proj-card, [data-page], .lang span, #logoLink {
-      cursor: none !important;
-    }
-  }
 
-  /* ==== CURSOR FLECHA WINDOWS ==== */
-  .cursor {
-    position: fixed;
-    top: 0; left: 0;
-    width: 22px;
-    height: 22px;
-    pointer-events: none;
-    z-index: 10000;
-    transform: translate(0, 0);
-    transition: width 0.15s ease, height 0.15s ease, opacity 0.2s ease;
-    display: none;
-    filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.8));
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .cursor { display: block; }
-  }
-  .cursor.hover {
-    width: 26px;
-    height: 26px;
-  }
-  .cursor svg {
-    width: 100%;
-    height: 100%;
-  }
+
 
   :root {
     --side-margin: 48px;
@@ -595,11 +566,6 @@
 <!-- ============================================
      CURSOR CRUZ DE CÁMARA
      ============================================ -->
-<div class="cursor" id="cursor">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="2,2 2,18 6.5,13.5 10,20 12.5,19 9,12.5 14.5,12.5" fill="white" stroke="black" stroke-width="1.2" stroke-linejoin="round"/>
-  </svg>
-</div>
 
 <div class="flash" id="flash"></div>
 
@@ -937,57 +903,6 @@ window.addEventListener('resize', () => {
   }
 });
 
-// ============================================
-// CURSOR PERSONALIZADO (cruz de cámara)
-// ============================================
-(function initCursor() {
-  // Solo si hay mouse fino (no en touch)
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-  const cursor = document.getElementById('cursor');
-  if (!cursor) return;
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let curX = mouseX;
-  let curY = mouseY;
-
-  // Lag muy sutil para que se sienta "vivo" pero no molesto
-  const lag = 0.35;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  function animate() {
-    curX += (mouseX - curX) * lag;
-    curY += (mouseY - curY) * lag;
-    cursor.style.transform = `translate(${curX}px, ${curY}px)`;
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  // Hover en elementos interactivos: agranda el cursor
-  function attachHoverListeners() {
-    const interactive = document.querySelectorAll('a, button, .proj-card, [data-page], .lang span, #logoLink, [role="button"]');
-    interactive.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-  }
-  attachHoverListeners();
-
-  // Re-attach cuando cambia la página (porque se generan elementos nuevos)
-  const observer = new MutationObserver(() => {
-    attachHoverListeners();
-  });
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  // Cuando el mouse sale de la ventana, oculta cursor
-  document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
-  document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
-})();
 
 // ============================================
 // PARALLAX SUTIL DEL REEL EN EL HOME
