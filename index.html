@@ -625,7 +625,7 @@
 
 <section id="page-work">
   <div class="work-page">
-    <h1 class="section-label" data-i18n="section.work" style="display:none">TRABAJOS</h1>
+    <h1 class="section-label" data-i18n="section.work">TRABAJOS</h1>
     <div class="work-grid">
       <article class="proj-card" data-id="0" aria-label="Viajes de Amor — Jero Jones">
         <video autoplay muted loop playsinline><source src="viajes-de-amor.mp4" type="video/mp4"></video>
@@ -789,7 +789,7 @@ function renderProject(p, withFlash = true){
   const t = translations[currentLang];
   const html = `
     <div class="project-video-wrap">
-      <video autoplay muted loop playsinline>
+      <video autoplay muted loop playsinline oncontextmenu="return false">
         <source src="${p.video}" type="video/mp4">
       </video>
     </div>
@@ -853,10 +853,13 @@ document.querySelectorAll('.lang span').forEach(s => {
 });
 
 // ============================================
-// BLOQUEAR CLICK DERECHO EN VIDEOS
+// BLOQUEAR CLICK DERECHO EN VIDEOS (estáticos y dinámicos)
 document.querySelectorAll('video').forEach(function(v) {
   v.addEventListener('contextmenu', function(e) { e.preventDefault(); });
   v.removeAttribute('controls');
+});
+document.addEventListener('contextmenu', function(e) {
+  if (e.target.tagName === 'VIDEO') e.preventDefault();
 });
 
 // INICIALIZACIÓN: ocultar footer en mobile al cargar (porque home arranca activo)
