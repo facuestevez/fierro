@@ -196,6 +196,36 @@
     display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   }
 
+
+  /* REFERENCIAS */
+  .refs-section {
+    position: relative;
+    overflow: hidden;
+  }
+  .refs-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.12;
+    filter: grayscale(60%);
+    z-index: 0;
+  }
+  .refs-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1;
+  }
+  .refs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 800px) {
+    .refs-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 500px) {
+    .refs-grid { grid-template-columns: 1fr; }
+  }
   /* MOBILE */
   @media (max-width: 800px) {
     :root { --side: 20px; --top: 18px; }
@@ -337,6 +367,62 @@
     </div>
   </section>
 
+
+  <section class="section refs-section" id="referencias">
+    <video class="refs-bg" autoplay muted loop playsinline>
+      <source src="../trucha-show.mp4" type="video/mp4">
+    </video>
+    <div class="refs-overlay"></div>
+    <div style="position:relative;z-index:2;">
+      <div class="section-label">REFERENCIAS ESTÉTICAS</div>
+      <h2 class="section-title">Referentes</h2>
+      <div class="refs-grid">
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../trucha-dossier.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">DOSSIER</span>
+            <span class="artist">TRUCHA</span>
+          </div>
+        </div>
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../boney-m.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">SUNNY</span>
+            <span class="artist">BONEY M</span>
+          </div>
+        </div>
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../depeche-mode.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">NEVER LET ME DOWN AGAIN</span>
+            <span class="artist">DEPECHE MODE</span>
+          </div>
+        </div>
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../lady-gaga.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">DIE WITH A SMILE</span>
+            <span class="artist">LADY GAGA & BRUNO MARS</span>
+          </div>
+        </div>
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../led-zeppelin.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">DAZED AND CONFUSED</span>
+            <span class="artist">LED ZEPPELIN</span>
+          </div>
+        </div>
+        <div class="trabajo-card ref-card">
+          <video autoplay muted loop playsinline><source src="../rolling-stones.mp4" type="video/mp4"></video>
+          <div class="trabajo-label">
+            <span class="titulo">SYMPATHY FOR THE DEVIL</span>
+            <span class="artist">THE ROLLING STONES</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="presupuesto">
     <div class="section-label">PRESUPUESTO</div>
     <h2 class="section-title">Inversión</h2>
@@ -399,7 +485,13 @@ const vObs = new IntersectionObserver(entries => {
     vids.forEach(v => { if (e.isIntersecting) v.play().catch(()=>{}); else v.pause(); });
   });
 }, { threshold: 0.1 });
-document.querySelectorAll('.trabajo-card').forEach(el => vObs.observe(el));
+document.querySelectorAll('.trabajo-card, .ref-card, .refs-section').forEach(el => vObs.observe(el));
+
+// BLOQUEAR CLICK DERECHO EN VIDEOS
+document.querySelectorAll('video').forEach(v => {
+  v.addEventListener('contextmenu', e => e.preventDefault());
+  v.removeAttribute('controls');
+});
 </script>
 </body>
 </html>

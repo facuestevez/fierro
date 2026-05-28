@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 
-<title>FIERRO</title>
+<title>FIERRO — Estudio Audiovisual | Buenos Aires</title>
 <meta name="description" content="FIERRO es un estudio audiovisual de Buenos Aires. Producimos videoclips, spots y contenido para artistas. Identidad, dirección y producción.">
 <meta name="keywords" content="FIERRO, estudio audiovisual, productora audiovisual, videoclips, Buenos Aires, Argentina, dirección, producción, spots, contenido musical, Jero Jones, FERVOR, ENERC, productora emergente, Lulo Innocenti, Bruno Levy, Facundo López Estévez">
 <meta name="author" content="FIERRO">
@@ -37,12 +37,12 @@
 <meta name="twitter:image" content="https://fierroav.com/og-image.jpg">
 <meta name="twitter:image:alt" content="FIERRO — Estudio Audiovisual">
 
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="icon" type="image/png" media="(prefers-color-scheme: dark)" href="favicon_blanco.png">
+<link rel="icon" type="image/png" media="(prefers-color-scheme: light)" href="favicon_negro.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_blanco.png">
+<link rel="shortcut icon" href="favicon_blanco.png">
 <meta name="theme-color" content="#000000">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -350,12 +350,11 @@
     gap: 40px;
   }
   .project-title {
-    font-size: clamp(28px, 3.5vw, 52px);
+    font-size: clamp(40px, 5.5vw, 80px);
     font-weight: 500;
-    letter-spacing: 0.04em;
-    line-height: 1;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
     margin-bottom: 10px;
-    text-transform: uppercase;
   }
   .project-artist {
     font-family: "DM Sans", sans-serif;
@@ -524,7 +523,7 @@
       width: 100%;
       font-size: 10px;
     }
-    .project-title { font-size: clamp(24px, 8vw, 44px); }
+    .project-title { font-size: clamp(36px, 11vw, 64px); }
 
     /* Contacto: scroll y mail más chico para que no se corte */
     .contact-page {
@@ -854,6 +853,12 @@ document.querySelectorAll('.lang span').forEach(s => {
 });
 
 // ============================================
+// BLOQUEAR CLICK DERECHO EN VIDEOS
+document.querySelectorAll('video').forEach(function(v) {
+  v.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  v.removeAttribute('controls');
+});
+
 // INICIALIZACIÓN: ocultar footer en mobile al cargar (porque home arranca activo)
 // ============================================
 (function initFooterState() {
@@ -873,14 +878,26 @@ document.querySelectorAll('.lang span').forEach(s => {
   const horizontal = document.querySelector('.home-reel .reel-horizontal');
   const vertical = document.querySelector('.home-reel .reel-vertical');
 
+  function tryPlay(video) {
+    if (!video) return;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    var p = video.play();
+    if (p !== undefined) p.catch(function() {
+      document.addEventListener('touchstart', function() {
+        video.play().catch(function(){});
+      }, { once: true });
+    });
+  }
+
   if (isPortrait) {
-    // Portrait: reproducir vertical, pausar horizontal
-    if (vertical) vertical.play().catch(() => {});
-    if (horizontal) { horizontal.pause(); }
+    if (vertical) tryPlay(vertical);
+    if (horizontal) horizontal.pause();
   } else {
-    // Landscape: reproducir horizontal, pausar vertical
-    if (horizontal) horizontal.play().catch(() => {});
-    if (vertical) { vertical.pause(); }
+    if (horizontal) tryPlay(horizontal);
+    if (vertical) vertical.pause();
   }
 })();
 
