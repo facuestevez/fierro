@@ -874,21 +874,13 @@ document.querySelectorAll('.lang span').forEach(s => {
   const vertical = document.querySelector('.home-reel .reel-vertical');
 
   if (isPortrait) {
-    // Pantalla vertical: solo cargar el vertical, eliminar source del horizontal
-    if (horizontal) {
-      horizontal.removeAttribute('src');
-      const source = horizontal.querySelector('source');
-      if (source) source.remove();
-      horizontal.load();
-    }
+    // Portrait: reproducir vertical, pausar horizontal
+    if (vertical) vertical.play().catch(() => {});
+    if (horizontal) { horizontal.pause(); }
   } else {
-    // Pantalla horizontal: solo cargar el horizontal
-    if (vertical) {
-      vertical.removeAttribute('src');
-      const source = vertical.querySelector('source');
-      if (source) source.remove();
-      vertical.load();
-    }
+    // Landscape: reproducir horizontal, pausar vertical
+    if (horizontal) horizontal.play().catch(() => {});
+    if (vertical) { vertical.pause(); }
   }
 })();
 
