@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Preview al compartir -->
+<meta property="og:title" content="JERO JONES × FIERRO — Propuesta">
+<meta property="og:description" content="Propuesta de cobertura audiovisual. Road to Roxy · C.A.B.A.">
+<meta property="og:image" content="https://fierroav.com/cobertura-jerojones-roxy/jero-preview.jpg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fierroav.com/cobertura-jerojones-roxy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fierroav.com/cobertura-jerojones-roxy/jero-preview.jpg">
+<title>JERO JONES × FIERRO — Propuesta</title>
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="shortcut icon" href="../favicon.ico">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #000; overflow-x: hidden; scroll-behavior: smooth; }
+  body {
+    background: #000; color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%; overflow-x: hidden; overflow-y: auto;
+    overscroll-behavior-x: none; -webkit-overflow-scrolling: touch;
+  }
+  :root { --side: 48px; --top: 28px; }
+
+  /* HEADER */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: var(--top) var(--side) calc(var(--top) * 2.5);
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  }
+  header > * { pointer-events: auto; }
+  .logo { width: 105px; height: auto; display: block; }
+
+  /* HERO */
+  .hero {
+    position: relative; width: 100vw; height: 100vh;
+    overflow: hidden; background: #000;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 var(--side) calc(var(--top) * 2 + 10px);
+  }
+  .hero-video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, #000 20%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.3) 100%);
+    z-index: 1;
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-pretitle {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.1em;
+    opacity: 0.5; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: clamp(52px, 10vw, 130px);
+    font-weight: 500; letter-spacing: -0.04em; line-height: 0.9;
+  }
+  .hero-sub { margin-top: 22px; display: flex; gap: 32px; align-items: baseline; flex-wrap: wrap; }
+  .hero-sub .detail {
+    font-family: "DM Sans", sans-serif;
+    font-size: 11px; letter-spacing: 0.06em; opacity: 0.5; text-transform: uppercase;
+  }
+
+  /* SECCIONES */
+  .section { padding: 100px var(--side); border-top: 1px solid #1a1a1a; }
+  .section-label {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.5; margin-bottom: 48px;
+  }
+  .section-title {
+    font-size: clamp(32px, 4.5vw, 64px); font-weight: 500;
+    letter-spacing: -0.03em; line-height: 1; margin-bottom: 56px;
+    white-space: nowrap;
+  }
+
+  /* CONCEPTO */
+  .concepto-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 80px; align-items: start; }
+  .concepto-text p { font-size: 15px; line-height: 2; color: #888; margin-bottom: 24px; }
+  .concepto-text p strong { color: #fff; font-weight: 500; }
+  .concepto-specs { display: flex; flex-direction: column; }
+  .spec-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 20px 0; border-bottom: 1px solid #1a1a1a;
+  }
+  .spec-row:first-child { border-top: 1px solid #1a1a1a; }
+  .spec-label {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.4; text-transform: uppercase;
+  }
+  .spec-value { font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+
+  /* VIDEOS GRID */
+  .videos-grid-3 {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-top: 56px;
+  }
+  .videos-grid-2 {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 10px; margin-top: 10px;
+  }
+  .video-card {
+    position: relative; overflow: hidden; background: #111;
+    aspect-ratio: 16/9;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .video-card.visible { opacity: 1; transform: translateY(0); }
+  .video-card video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transition: transform .5s ease, filter .3s ease;
+    filter: brightness(0.85);
+  }
+  .video-card:hover video { transform: scale(1.04); filter: brightness(1); }
+  .video-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
+  }
+  .video-card-label {
+    position: absolute; bottom: 14px; left: 16px; right: 16px;
+    z-index: 2; font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.6;
+    text-transform: uppercase; pointer-events: none;
+  }
+
+  /* VIDEO DESTACADO */
+  .video-feature {
+    position: relative; width: 100%; background: #111;
+    aspect-ratio: 16/9; overflow: hidden; margin-top: 40px;
+  }
+  .video-feature video {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  }
+  .video-feature-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 14px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.6; text-transform: uppercase;
+    pointer-events: none;
+  }
+
+  /* NODOS */
+  .nodos-list { border: 1px solid #1a1a1a; margin-top: 56px; }
+  .nodo {
+    padding: 24px 32px; border-bottom: 1px solid #1a1a1a;
+    display: flex; gap: 24px; align-items: flex-start;
+  }
+  .nodo:last-child { border-bottom: none; }
+  .nodo-marker {
+    font-size: 14px; font-weight: 500; flex-shrink: 0;
+    padding-top: 2px; opacity: 0.4;
+  }
+  .nodo-text { font-size: 14px; color: #888; line-height: 1.8; }
+  .nodo-text strong { color: #fff; font-weight: 500; }
+
+  /* PINTEREST */
+  .pinterest-link {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 40px; padding: 16px 0;
+    border-bottom: 1px solid #fff;
+    color: #fff; text-decoration: none;
+    font-family: "DM Sans", sans-serif; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .pinterest-link:hover { opacity: 0.6; }
+  .pinterest-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+  /* REFS PELÍCULAS */
+  .films-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: #1a1a1a; border: 1px solid #1a1a1a; margin-top: 56px;
+  }
+  .film-item { background: #000; padding: 32px 28px; }
+  .film-title { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .film-sub {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.06em; opacity: 0.4; text-transform: uppercase;
+  }
+
+  /* CÁMARAS */
+  .camaras-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: #1a1a1a; border: 1px solid #1a1a1a;
+  }
+  .camara-item {
+    background: #000; padding: 36px 28px;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .camara-item.visible { opacity: 1; transform: translateY(0); }
+  .camara-id {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.1em; opacity: 0.35; margin-bottom: 16px;
+  }
+  .camara-rol { font-size: 16px; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .camara-desc {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.05em; opacity: 0.4; line-height: 1.75;
+  }
+  .camara-nota {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.05em; opacity: 0.7; line-height: 1.75;
+    margin-top: 12px; padding-top: 12px; border-top: 1px solid #1a1a1a;
+    color: #fff;
+  }
+
+  /* TRABAJOS */
+  .trabajos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .trabajo-card {
+    position: relative; overflow: hidden; background: #111;
+    aspect-ratio: 16/9; display: block; text-decoration: none; color: #fff;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .trabajo-card.visible { opacity: 1; transform: translateY(0); }
+  .trabajo-card video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; transition: transform .5s ease, filter .3s ease;
+    filter: brightness(0.85);
+  }
+  .trabajo-card:hover video { transform: scale(1.04); filter: brightness(1); }
+  .trabajo-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+    pointer-events: none;
+  }
+  .trabajo-label {
+    position: absolute; bottom: 16px; left: 20px; right: 20px;
+    z-index: 2; display: flex; align-items: baseline; gap: 12px;
+    pointer-events: none;
+  }
+  .trabajo-label .titulo {
+    font-size: clamp(12px, 1.2vw, 16px); font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .trabajo-label .artist {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(9px, 0.7vw, 10px); letter-spacing: 0.05em;
+    opacity: 0.55; font-weight: 400; text-transform: uppercase;
+  }
+
+  /* EQUIPO */
+  .equipo-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: #1a1a1a; border: 1px solid #1a1a1a; margin-top: 48px;
+  }
+  .equipo-item {
+    background: #000; padding: 36px 40px;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .equipo-item.visible { opacity: 1; transform: translateY(0); }
+  .equipo-role {
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.4;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .equipo-name { font-size: 20px; font-weight: 500; letter-spacing: -0.02em; }
+
+  /* FOOTER */
+  footer {
+    padding: var(--top) var(--side);
+    font-family: "DM Sans", sans-serif;
+    font-size: 10px; letter-spacing: 0.08em; opacity: 0.45;
+    border-top: 1px solid #1a1a1a;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+
+  /* MOBILE */
+  @media (max-width: 800px) {
+    :root { --side: 20px; --top: 18px; }
+    header { background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 70%, transparent 100%); padding: 16px 20px 24px; }
+    .logo { width: 75px; }
+    .hero { padding: 0 20px 48px; }
+    .hero-sub { flex-direction: column; gap: 8px; }
+    .section { padding: 72px var(--side); }
+    .section-title { white-space: normal; }
+    .concepto-grid { grid-template-columns: 1fr; gap: 48px; }
+    .camaras-grid { grid-template-columns: 1fr 1fr; }
+    .films-grid { grid-template-columns: 1fr 1fr; }
+    .trabajos-grid { grid-template-columns: 1fr 1fr; }
+    .equipo-grid { grid-template-columns: 1fr; }
+    .videos-grid-3 { grid-template-columns: 1fr; }
+    .videos-grid-2 { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; }
+  }
+  @media (max-width: 500px) {
+    .camaras-grid { grid-template-columns: 1fr; }
+    .films-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="https://fierroav.com" aria-label="FIERRO — Inicio">
+    <svg class="logo" viewBox="0 0 682 218" xmlns="http://www.w3.org/2000/svg">
+      <path d="M96.4482 29.8751H29.6724V62.233H89.3309V92.0977H29.6724V217.795H0V0H96.4482V29.8649V29.8751Z" fill="white"/>
+      <path d="M138.494 0.0101852V217.805H108.822V0.0101852H138.494Z" fill="white"/>
+      <path d="M247.297 29.8751H180.522V62.233H240.19V92.0977H180.522V187.93H247.297V217.795H150.849V7.62939e-06H247.297V29.8649V29.8751Z" fill="white"/>
+      <path d="M365.39 0.0101852V46.3695C365.39 83.0828 356.119 107.046 340.661 121.973C361.376 149.04 371.577 194.778 371.577 217.805H341.278C341.278 199.764 335.09 161.179 314.386 137.531C306.662 140.329 298.311 142.202 289.344 143.443V217.805H259.671V0.0101852H365.4H365.39ZM335.404 46.3695V29.8751H289.344V113.568C317.165 109.518 335.404 94.8963 335.404 46.3593V46.3695Z" fill="white"/>
+      <path d="M489.66 0.0101852V46.3695C489.66 83.0828 480.389 107.046 464.932 121.973C485.647 149.04 495.847 194.778 495.847 217.805H465.548C465.548 199.764 459.361 161.179 438.656 137.531C430.932 140.329 422.581 142.202 413.614 143.443V217.805H383.942V0.0101852H489.67H489.66ZM459.675 46.3695V29.8751H413.614V113.568C441.437 109.518 459.675 94.8963 459.675 46.3593V46.3695Z" fill="white"/>
+      <path d="M615.164 0.0101852V217.805H508.201V0.0101852H615.164ZM585.481 187.93V29.8649H537.874V187.93H585.481Z" fill="white"/>
+      <path d="M681.429 197.548L21.0027 111.189L19.8198 121.304L681.429 207.795V197.548Z" fill="white"/>
+    </svg>
+  </a>
+  <nav></nav>
+</header>
+
+<div class="hero">
+  <video class="hero-video" src="Placa Principal - Jero.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-pretitle">Propuesta de cobertura audiovisual</div>
+    <h1 class="hero-title">JERO JONES</h1>
+    <div class="hero-sub">
+      <span class="detail">ROXY</span>
+      <span class="detail">C.A.B.A.</span>
+      <span class="detail">PROPUESTA LULO INNOCENTI</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <section class="section" id="propuesta">
+    <div class="section-label">PROPUESTA</div>
+    <h2 class="section-title">Road to Roxy<br>y Cobertura de Show</h2>
+    <div class="concepto-grid">
+      <div class="concepto-text">
+        <p>El proyecto se conforma de <strong>dos piezas</strong>.</p>
+        <p><strong>1 — Road to Roxy.</strong> Grabaciones de todo lo que sucede previo al show: los ensayos, los momentos de descanso, la gente que rodea a Jero en el camino. Todo este material se monta como un teaser para sacarlo días antes del show.</p>
+        <p><strong>2 — Cobertura de Show.</strong> La idea es llegar a la misma sensación que estar en vivo, continuando la línea estética pop que viene planteando Jero. Las cámaras van a jugar con el zoom y con paneos — queremos mostrar que la cámara está viva.</p>
+      </div>
+      <div class="concepto-specs">
+        <div class="spec-row">
+          <span class="spec-label">Show</span>
+          <span class="spec-value">ROXY</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Venue</span>
+          <span class="spec-value">C.A.B.A.</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Cámaras</span>
+          <span class="spec-value">4 + GoPro</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Formato</span>
+          <span class="spec-value">Multicámara</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="road">
+    <div class="section-label">PIEZA 1</div>
+    <h2 class="section-title">Road to Roxy</h2>
+    <div class="concepto-grid">
+      <div class="concepto-text">
+        <p>Tenemos prácticamente 1 mes hasta el show. <strong>Y quiero empezar a grabar ya.</strong></p>
+        <p>El Road to Roxy consiste en grabaciones de todo lo que sucede previo al show; pero no solo minutos antes de entrar al escenario: sino <strong>los ensayos, los momentos de descanso, la gente que rodea a Jero en el camino</strong> e incluso si se puede una pequeña entrevista.</p>
+        <p>Todo este material se junta para una semana o unos días antes para sacarlo como un <strong>teaser de Roxy</strong>. Funciona bien como pieza por sí sola.</p>
+      </div>
+      <div class="concepto-specs">
+        <div class="spec-row">
+          <span class="spec-label">Formato</span>
+          <span class="spec-value">4:3</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Soporte</span>
+          <span class="spec-value">Hi8 + Digital</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Entrega</span>
+          <span class="spec-value">Previa al show</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="videos-grid-3">
+      <div class="video-card">
+        <video src="RoadToRoxy-1.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="video-card">
+        <video src="RoadtoRoxy-2.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="video-card">
+        <video src="RoadtoRoxy-3.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+    <div class="videos-grid-2">
+      <div class="video-card">
+        <video src="RoadtoRoxy.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="video-card">
+        <video src="Road To Roxy - 6.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+
+    <a class="pinterest-link" href="https://pin.it/5x5L7MKWX" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+      </svg>
+      Ver tablero de referencias en Pinterest
+    </a>
+  </section>
+
+  <section class="section" id="estetica">
+    <div class="section-label">ESTÉTICA — ROAD TO ROXY</div>
+    <h2 class="section-title">El mundo pop</h2>
+    <div class="concepto-grid">
+      <div class="concepto-text">
+        <p>Jero ya tiene un mundo propio bien definido. Hablando con él llegamos a la conclusión de este <strong>"mundo pop"</strong> y que el registro tome los detalles que son partes de aquel mundo: unas medias largas de colores colgadas, una bola de disco, sus anteojos en diferentes lugares sueltos, Saldías como el lugar de creación.</p>
+        <p>La estética mezcla grabaciones con <strong>videocámara Hi8 y una digital</strong>, para crear un ambiente extrañado y propio del mundo de Jero. Idealmente en 4:3.</p>
+        <p>La idea es poder filmar todo lo que se pueda en Saldías y los días previos. La función es <strong>generar expectativa</strong>.</p>
+      </div>
+      <div class="concepto-specs">
+        <div class="spec-row">
+          <span class="spec-label">Relación de aspecto</span>
+          <span class="spec-value">4:3</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Cámaras</span>
+          <span class="spec-value">Hi8 + Digital</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Tono</span>
+          <span class="spec-value">Pop · Analógico</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-feature">
+      <video src="RoadtoRoxy-3.mp4" autoplay muted loop playsinline></video>
+      <div class="video-feature-label">Referencia de detalle — Back to the Future</div>
+    </div>
+    <div class="video-feature">
+      <video src="Road To Roxy - 6.mp4" autoplay muted loop playsinline></video>
+      <div class="video-feature-label">Estética — Pretensión · Jero Jones ft. Homogénica</div>
+    </div>
+
+    <div class="films-grid">
+      <div class="film-item">
+        <div class="film-title">Boogie Nights</div>
+        <div class="film-sub">Paul Thomas Anderson · 1997</div>
+      </div>
+      <div class="film-item">
+        <div class="film-title">Punch-Drunk Love</div>
+        <div class="film-sub">Paul Thomas Anderson · 2002</div>
+      </div>
+      <div class="film-item">
+        <div class="film-title">Saturday Night Fever</div>
+        <div class="film-sub">John Badham · 1977</div>
+      </div>
+      <div class="film-item">
+        <div class="film-title">All That Jazz</div>
+        <div class="film-sub">Bob Fosse · 1979</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cobertura">
+    <div class="section-label">PIEZA 2</div>
+    <h2 class="section-title">Cobertura de Show</h2>
+    <div class="concepto-grid">
+      <div class="concepto-text">
+        <p>La idea del show es llegar a la misma sensación que <strong>estar en vivo</strong>.</p>
+        <p>Continuar con la línea estética pop que se viene planteando. Los recursos audiovisuales seguirán la misma línea discursiva, <strong>utilizando elementos de un cine 70s - 80s</strong>.</p>
+        <p>Las cámaras van a jugar con el zoom y con paneos. Queremos mostrar que la cámara está viva, y que uno se sienta parte del show.</p>
+      </div>
+      <div class="concepto-specs">
+        <div class="spec-row">
+          <span class="spec-label">Cámaras</span>
+          <span class="spec-value">4 + GoPro</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Referencia</span>
+          <span class="spec-value">Cine 70s–80s</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Movimiento</span>
+          <span class="spec-value">Zoom · Paneo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nodos-list">
+      <div class="nodo">
+        <div class="nodo-marker">✕</div>
+        <div class="nodo-text"><strong>No puede ser una cámara estática.</strong> Siempre sigue a alguien, siempre se mueve. Ya sea con pequeños zooms ins-outs o paneos.</div>
+      </div>
+      <div class="nodo">
+        <div class="nodo-marker">✕</div>
+        <div class="nodo-text">Que se mueva no quiere decir que elegimos de manera aleatoria lo que filmamos. <strong>Evitar girar por todos lados con la cámara.</strong></div>
+      </div>
+      <div class="nodo">
+        <div class="nodo-marker">✕</div>
+        <div class="nodo-text"><strong>No quiero tener encuadres que recorten las figuras humanas ni los instrumentos.</strong></div>
+      </div>
+      <div class="nodo">
+        <div class="nodo-marker">—</div>
+        <div class="nodo-text">Elegimos a uno o dos personajes y los seguimos en todo el show. Eso lo definimos antes de empezar en cada cámara. La que tiene un movimiento más libre es la Cam 4 en mano.</div>
+      </div>
+    </div>
+
+    <div class="videos-grid-2" style="margin-top: 56px;">
+      <div class="video-card">
+        <video src="Cobertura-1.mp4" autoplay muted loop playsinline></video>
+        <div class="video-card-label">Referencia de cobertura</div>
+      </div>
+      <div class="video-card">
+        <video src="Cobertura-2.mp4" autoplay muted loop playsinline></video>
+        <div class="video-card-label">Referencia de cobertura</div>
+      </div>
+    </div>
+
+    <div class="video-feature">
+      <video src="Cobertura-2.mp4" autoplay muted loop playsinline></video>
+      <div class="video-feature-label">Ejemplo de lo ya filmado — Pretensión · En vivo en Fervor</div>
+    </div>
+  </section>
+
+  <section class="section" id="camaras">
+    <div class="section-label">SISTEMA DE CÁMARAS</div>
+    <h2 class="section-title">Setup de cámaras</h2>
+    <div class="camaras-grid">
+      <div class="camara-item">
+        <div class="camara-id">CAM — 01</div>
+        <div class="camara-rol">En Gimbal</div>
+        <div class="camara-desc">Seguimiento principal.<br>Movimiento fluido.<br><br>Sony A7III<br>Sony FE 50mm 1.8 (Autofoco)<br>Sigma 28-200mm f/3.5-5.6 (vintage/manual)</div>
+        <div class="camara-nota">1 batería · sin cargador</div>
+      </div>
+      <div class="camara-item">
+        <div class="camara-id">CAM — 02</div>
+        <div class="camara-rol">En Trípode</div>
+        <div class="camara-desc">Planos generales · Tele.<br><br>Sony A7III<br>Tele Sony 55-210mm f/4.5-6.3<br>Lente G 24-105mm</div>
+        <div class="camara-nota">2 baterías · con cargador</div>
+      </div>
+      <div class="camara-item">
+        <div class="camara-id">CAM — 03</div>
+        <div class="camara-rol">En Mano</div>
+        <div class="camara-desc">Cobertura complementaria.<br>Gran angular.<br><br>Sony A7IV<br>Lente Sony Kit 28-70<br>Sony 16mm [con viñeteo] / 24mm con recorte</div>
+        <div class="camara-nota">2 baterías</div>
+      </div>
+      <div class="camara-item">
+        <div class="camara-id">CAM — 04</div>
+        <div class="camara-rol">En Mano + GoPro</div>
+        <div class="camara-desc">Libre · Público · Piano.<br><br>Sony A7IV<br>Sony 16mm / 24mm con recorte de sensor<br>GoPro: grip a batería + grip a piano de Jero</div>
+        <div class="camara-nota">2 baterías</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-label">EQUIPO</div>
+    <div class="equipo-grid">
+      <div class="equipo-item">
+        <div class="equipo-role">Director Creativo</div>
+        <div class="equipo-name">Lulo Innocenti</div>
+      </div>
+      <div class="equipo-item">
+        <div class="equipo-role">Productor Ejecutivo</div>
+        <div class="equipo-name">Bruno Levy Ulanovsky</div>
+      </div>
+      <div class="equipo-item">
+        <div class="equipo-role">Productor Ejecutivo</div>
+        <div class="equipo-name">Facundo López Estévez</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trabajos">
+    <div class="section-label">TRABAJOS</div>
+    <h2 class="section-title">Lo que hacemos</h2>
+    <div class="trabajos-grid">
+      <a href="https://youtube.com/watch?v=oyjUaIN1XDs" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../fervor.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">FERVOR</span>
+          <span class="artist">COBERTURA DE SHOW</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=uRpBrjlDZJI" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../viajes-de-amor.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">VIAJES DE AMOR</span>
+          <span class="artist">JERO JONES</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=g0ZjGqqa-Ow" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../enerc.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">ENERC SE PROYECTA</span>
+          <span class="artist">ENERC</span>
+        </div>
+      </a>
+      <a href="https://youtube.com/watch?v=wucOZLTX1qk" target="_blank" rel="noopener" class="trabajo-card">
+        <video autoplay muted loop playsinline><source src="../stanislavski.mp4" type="video/mp4"></video>
+        <div class="trabajo-label">
+          <span class="titulo">EXPERIMENTO STANISLAVSKI</span>
+          <span class="artist">BARS 2025</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <a href="mailto:contactofierroav@gmail.com" aria-label="Mail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+      <rect x="3" y="5" width="18" height="14" rx="1"/>
+      <path d="m3 7 9 6 9-6"/>
+    </svg>
+  </a>
+  <a href="https://instagram.com/fierro.av" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+    </svg>
+  </a>
+</footer>
+
+<script>
+// SCROLL ANIMATIONS
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.camara-item, .trabajo-card, .video-card, .equipo-item').forEach(el => obs.observe(el));
+
+// PLAY/PAUSE según visibilidad
+const vObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    const vids = e.target.tagName === 'VIDEO' ? [e.target] : e.target.querySelectorAll('video');
+    vids.forEach(v => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); });
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.video-card, .video-feature, .trabajo-card').forEach(el => vObs.observe(el));
+
+// Hero video autoplay
+window.addEventListener('load', () => {
+  document.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
+});
+
+// Bloquear click derecho en videos
+document.querySelectorAll('video').forEach(v => {
+  v.addEventListener('contextmenu', e => e.preventDefault());
+  v.removeAttribute('controls');
+});
+</script>
+</body>
+</html>
